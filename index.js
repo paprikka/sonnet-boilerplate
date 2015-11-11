@@ -41,7 +41,7 @@ gulp.task('styles', function() {
 
 
 
-var bundler = watchify(browserify('./src/index.js', watchify.args));
+const bundler = watchify(browserify('./src/index.js', watchify.args));
 // add any other browserify options or transforms here
 // bundler.transform(require('reactify'), {es6: true, es6module: true, nonStrictEs6Module: true});
 bundler.transform(require('babelify'), {presets: ["es2015", "react"]});
@@ -61,6 +61,7 @@ function bundle() {
     .pipe(gulp.dest(config.path.dist + '/js'))
     .pipe(livereload());
 }
+
 gulp.task('js', bundle); // so you can run `gulp js` to build the file
 bundler.on('update', bundle); // on any dep update, runs the bundler
 
